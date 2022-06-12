@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.firstrestapi.mapper.UserListMapper">
+    <insert id="insert">
+        INSERT 
+            INTO user_list (
+                user_name, 
+                age, 
+                description
+            ) VALUES(
+                #{userName}, 
+                #{age}, 
+                #{description}
+            )
+    </insert>
+
+    <select id="selectByCondition" resultType="com.example.firstrestapi.entity.UserList">
+        <bind name="userNameLike" value="'%' + userName + '%'"/>
+        SELECT 
+            user_id, 
+            user_name, 
+            age, 
+            description 
+        FROM 
+            user_list
+        <where>
+            <if test="userName != ''">
+                user_name LIKE #{userNameLike}
+            </if>
+        </where>
+    </select>
+
+    <update id="update">
+        UPDATE 
+            user_list 
+        SET 
+            user_name = #{userName},
+            age = #{age},
+            description = #{description}
+        WHERE 
+            user_id = #{userId}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM
+            user_list
+        WHERE
+            user_id = #{userId}
+    </delete>
+</mapper>
