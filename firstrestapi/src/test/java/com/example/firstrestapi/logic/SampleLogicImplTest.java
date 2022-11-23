@@ -1,7 +1,6 @@
 package com.example.firstrestapi.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.firstrestapi.common.TestConfig;
-import com.example.firstrestapi.dao.impl.UsersDaoImpl;
+import com.example.firstrestapi.dao.UsersDao;
 import com.example.firstrestapi.dto.InputDto;
 import com.example.firstrestapi.dto.OutputDto;
 import com.example.firstrestapi.dto.UsersSelectConditionDto;
@@ -31,7 +30,7 @@ public class SampleLogicImplTest {
     private SampleLogic sampleLogic;
 
     @Autowired
-    private UsersDaoImpl userListDao;
+    private UsersDao usersDao;
 
     /**
      * テスト設定
@@ -56,17 +55,21 @@ public class SampleLogicImplTest {
         Integer age = 15;
         String remarks = "SampleLogic#postSampleのテスト用データ";
 
+        // 最初にデータがないこと
+        UsersSelectConditionDto usersSelectConditionDto = new UsersSelectConditionDto();
+        usersSelectConditionDto.setUserId("");
+        usersSelectConditionDto.setUserName(userName);
+        List<Users> before = usersDao.selectByCondition(usersSelectConditionDto);
+        assertEquals(0, before.size());
+
         InputDto inputDto = new InputDto();
         inputDto.setUserName(userName);
         inputDto.setAge(age);
         inputDto.setRemarks(remarks);
 
-        // 返却値の定義
-        boolean result = false;
-
         try {
             // ロジック呼び出し
-            result = sampleLogic.postSample(inputDto);
+            sampleLogic.postSample(inputDto);
         } catch (Exception e) {
             // 例外が投げられたら失敗
             e.printStackTrace();
@@ -74,7 +77,8 @@ public class SampleLogicImplTest {
         }
 
         // 結果のassert
-        assertTrue(result);
+        List<Users> result = usersDao.selectByCondition(usersSelectConditionDto);
+        assertEquals(1, result.size());
     }
 
     /**
@@ -110,27 +114,22 @@ public class SampleLogicImplTest {
     @Test
     public void testPutSample_success() {
 
-        // 入力値の設定
-        String userName = "putSample";
+        String userId = "4";
 
-        // データを仕込む
-        Users userList = new Users();
-        userList.setUserName(userName);
-        userList.setAge(38);
-        userList.setRemarks("SampleLogic#putSampleのテスト用データ");
-        userListDao.insert(userList);
-
-        // 挿入したデータを確認し、userIdを取得する
+        // 更新前のデータを取得
         UsersSelectConditionDto usersSelectConditionDto = new UsersSelectConditionDto();
-        usersSelectConditionDto.setUserName(userName);
-        List<Users> userLists = userListDao.selectByCondition(usersSelectConditionDto);
-        String userId = userLists.get(userLists.size() - 1).getUserId();
+        usersSelectConditionDto.setUserId(userId);
+        usersSelectConditionDto.setUserName("");
+        List<Users> before = usersDao.selectByCondition(usersSelectConditionDto);
+        assertEquals(1, before.size());
+        assertEquals("putSample", before.get(0).getUserName());
+        assertEquals(2, before.get(0).getAge());
+        assertEquals("put sample", before.get(0).getRemarks());
 
-        // update用のinputを作成
         InputDto inputDto = new InputDto();
         inputDto.setUserName("putSample2");
-        inputDto.setAge(20);
-        inputDto.setRemarks("SampleLogic#putSampleのテスト用データ_更新完了");
+        inputDto.setAge(3);
+        inputDto.setRemarks("updated");
 
         try {
             // ロジック呼び出し
@@ -140,6 +139,13 @@ public class SampleLogicImplTest {
             e.printStackTrace();
             fail();
         }
+
+        // 結果のassert
+        List<Users> result = usersDao.selectByCondition(usersSelectConditionDto);
+        assertEquals(1, result.size());
+        assertEquals("putSample2", result.get(0).getUserName());
+        assertEquals(3, result.get(0).getAge());
+        assertEquals("updated", result.get(0).getRemarks());
     }
 
     /**
@@ -159,5 +165,12 @@ public class SampleLogicImplTest {
             e.printStackTrace();
             fail();
         }
+
+        // 結果のassert
+        UsersSelectConditionDto usersSelectConditionDto = new UsersSelectConditionDto();
+        usersSelectConditionDto.setUserId(userId);
+        usersSelectConditionDto.setUserName("");
+        List<Users> result = usersDao.selectByCondition(usersSelectConditionDto);
+        assertEquals(0, result.size());
     }
 }

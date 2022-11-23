@@ -30,6 +30,7 @@ public interface UsersDao {
     List<Users> selectByCondition(UsersSelectConditionDto usersSelectConditionDto);
 
     // TODO selectAll追加
+    // TODO 検索条件が入らなかった時のnull -> 空文字処理、およびそれに伴う業務処理側の掃除
 
     /**
      * ユーザ情報を更新します。
