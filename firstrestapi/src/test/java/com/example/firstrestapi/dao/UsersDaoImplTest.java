@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.firstrestapi.common.TestConfig;
-import com.example.firstrestapi.dao.impl.UsersDaoImpl;
 import com.example.firstrestapi.dto.UsersSelectConditionDto;
 import com.example.firstrestapi.entity.Users;
 import com.example.firstrestapi.enums.Component;
