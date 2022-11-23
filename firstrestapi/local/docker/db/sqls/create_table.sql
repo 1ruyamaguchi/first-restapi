@@ -1,7 +1,7 @@
 -- データベース作成
 CREATE DATABASE snaildb;
 
-USE snaidb;
+USE snaildb;
 
 -- テーブル作成
 CREATE TABLE user_list(
