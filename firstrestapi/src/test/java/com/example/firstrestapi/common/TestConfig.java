@@ -10,16 +10,18 @@ import org.dbunit.dataset.csv.CsvDataSet;
 import org.dbunit.ext.mysql.MySqlConnection;
 import org.dbunit.operation.DatabaseOperation;
 
+import com.example.firstrestapi.enums.Component;
+
 public class TestConfig {
 
     /**
      * csv形式で作成したテストデータを挿入します。
      * 
-     * @param databaseName データベースの名称
-     * @param testDataDir  csvファイルを格納しているディレクトリ名
+     * @param dao         コンポーネント（dao, logic, service）を選択します。
+     * @param testDataDir テストデータを格納しているディレクトリを選択します。
      * @throws Exception
      */
-    public static void testDataSetup(String testDataDir) throws Exception {
+    public static void testDataSetup(Component dao, String testDataDir) throws Exception {
 
         // データベース名
         final String DATABASE_NAME = "snaildb";
@@ -27,7 +29,7 @@ public class TestConfig {
         final String PROJECT_NAME = "firstrestapi";
 
         // テスト用csvデータのファイルパス
-        final String TESTDATA_BASIC_PATH = "src/test/java/com/example/" + PROJECT_NAME + "/dbdata/";
+        final String TESTDATA_BASIC_PATH = "src/test/java/com/example/" + PROJECT_NAME + "/" + dao + "/dbdata/";
         // DBの接続情報
         final String DATABASE_URL = "jdbc:mariadb://localhost:3306/" + DATABASE_NAME;
         final String DATABASE_USER_NAME = "root";

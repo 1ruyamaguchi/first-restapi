@@ -9,21 +9,21 @@
             INTO users (
                 user_name, 
                 age, 
-                description
+                remarks
             ) VALUES(
                 #{userName}, 
                 #{age}, 
-                #{description}
+                #{remarks}
             )
     </insert>
 
-    <select id="usersSelectByCondition" resultType="com.example.firstrestapi.entity.Users">
+    <select id="selectByCondition" resultType="com.example.firstrestapi.entity.Users">
         <bind name="userNameLike" value="'%' + userName + '%'"/>
         SELECT 
             user_id, 
             user_name, 
             age, 
-            description 
+            remarks 
         FROM 
             users
         <where>
