@@ -15,6 +15,6 @@ public class InputDto {
     /** 年齢 */
     private Integer age;
 
-    /** 説明 */
-    private String description;
+    /** 備考 */
+    private String remarks;
 }

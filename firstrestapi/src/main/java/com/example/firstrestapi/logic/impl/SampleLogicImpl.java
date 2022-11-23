@@ -8,11 +8,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.firstrestapi.dao.UserListDao;
+import com.example.firstrestapi.dao.impl.UsersDaoImpl;
 import com.example.firstrestapi.dto.InputDto;
 import com.example.firstrestapi.dto.OutputDto;
-import com.example.firstrestapi.dto.SelectConditionDto;
-import com.example.firstrestapi.entity.UserList;
+import com.example.firstrestapi.dto.UsersSelectConditionDto;
+import com.example.firstrestapi.entity.Users;
 import com.example.firstrestapi.logic.SampleLogic;
 
 /**
@@ -23,7 +23,7 @@ import com.example.firstrestapi.logic.SampleLogic;
 public class SampleLogicImpl implements SampleLogic {
 
     @Autowired
-    private UserListDao userListDao;
+    private UsersDaoImpl userListDao;
 
     /**
      * {@inheritDoc}
@@ -38,7 +38,7 @@ public class SampleLogicImpl implements SampleLogic {
         boolean result;
 
         // 入力値からエンティティに詰め替え
-        UserList userList = new UserList();
+        Users userList = new Users();
         BeanUtils.copyProperties(inputDto, userList);
 
         try {
@@ -66,14 +66,14 @@ public class SampleLogicImpl implements SampleLogic {
         List<OutputDto> returnUserLists = new ArrayList<>();
 
         // 検索条件を設定
-        SelectConditionDto selectConditionDto = new SelectConditionDto();
+        UsersSelectConditionDto selectConditionDto = new UsersSelectConditionDto();
         selectConditionDto.setUserName(userName);
 
         // データ取得処理
-        List<UserList> userLists = userListDao.selectByCondition(selectConditionDto);
+        List<Users> userLists = userListDao.selectByCondition(selectConditionDto);
 
         // データを返却値に詰め替え、取得時間を詰め込む
-        for (UserList userList : userLists) {
+        for (Users userList : userLists) {
             OutputDto outputDto = new OutputDto();
             BeanUtils.copyProperties(userList, outputDto);
             // 協定世界時のUTC 1970年1月1日深夜零時との差をミリ秒で取得
@@ -95,7 +95,7 @@ public class SampleLogicImpl implements SampleLogic {
         boolean result;
 
         // 入力値からエンティティに詰め替え
-        UserList userList = new UserList();
+        Users userList = new Users();
         userList.setUserId(userId);
         BeanUtils.copyProperties(inputDto, userList);
 

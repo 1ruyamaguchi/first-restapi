@@ -3,11 +3,11 @@ package com.example.firstrestapi.dto;
 import lombok.Data;
 
 /**
- * user_listの検索に使うDto
+ * usersの検索に使うDto
  * 
  */
 @Data
-public class SelectConditionDto {
+public class UsersSelectConditionDto {
 
     /** ユーザ名 */
     private String userName;

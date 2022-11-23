@@ -3,11 +3,11 @@ package com.example.firstrestapi.entity;
 import lombok.Data;
 
 /**
- * user_listテーブルのエンティティクラス
+ * usersテーブルのエンティティクラス
  * 
  */
 @Data
-public class UserList {
+public class Users {
 
     /** ユーザID */
     private String userId;
@@ -18,6 +18,6 @@ public class UserList {
     /** 年齢 */
     private Integer age;
 
-    /** 説明 */
-    private String description;
+    /** 尾行 */
+    private String remarks;
 }

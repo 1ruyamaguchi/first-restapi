@@ -11,11 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.firstrestapi.dao.UserListDao;
+import com.example.firstrestapi.dao.impl.UsersDaoImpl;
 import com.example.firstrestapi.dto.InputDto;
 import com.example.firstrestapi.dto.OutputDto;
-import com.example.firstrestapi.dto.SelectConditionDto;
-import com.example.firstrestapi.entity.UserList;
+import com.example.firstrestapi.dto.UsersSelectConditionDto;
+import com.example.firstrestapi.entity.Users;
 
 /**
  * SampleLogicImplのテストクラス
@@ -28,7 +28,7 @@ public class SampleLogicImplTest {
     private SampleLogic sampleLogic;
 
     @Autowired
-    private UserListDao userListDao;
+    private UsersDaoImpl userListDao;
 
     /**
      * postSampleのテスト 正常系
@@ -40,12 +40,12 @@ public class SampleLogicImplTest {
         // 入力値の設定
         String userName = "postSample";
         Integer age = 15;
-        String description = "SampleLogic#postSampleのテスト用データ";
+        String remarks = "SampleLogic#postSampleのテスト用データ";
 
         InputDto inputDto = new InputDto();
         inputDto.setUserName(userName);
         inputDto.setAge(age);
-        inputDto.setDescription(description);
+        inputDto.setRemarks(remarks);
 
         // 返却値の定義
         boolean result = false;
@@ -74,10 +74,10 @@ public class SampleLogicImplTest {
         String userName = "getSample";
 
         // データを仕込む
-        UserList userList = new UserList();
+        Users userList = new Users();
         userList.setUserName(userName);
         userList.setAge(20);
-        userList.setDescription("SampleLogic#getSampleのテスト用データ");
+        userList.setRemarks("SampleLogic#getSampleのテスト用データ");
         userListDao.insert(userList);
 
         // 返却値の定義
@@ -107,23 +107,23 @@ public class SampleLogicImplTest {
         String userName = "putSample";
 
         // データを仕込む
-        UserList userList = new UserList();
+        Users userList = new Users();
         userList.setUserName(userName);
         userList.setAge(38);
-        userList.setDescription("SampleLogic#putSampleのテスト用データ");
+        userList.setRemarks("SampleLogic#putSampleのテスト用データ");
         userListDao.insert(userList);
 
         // 挿入したデータを確認し、userIdを取得する
-        SelectConditionDto selectConditionDto = new SelectConditionDto();
-        selectConditionDto.setUserName(userName);
-        List<UserList> userLists = userListDao.selectByCondition(selectConditionDto);
+        UsersSelectConditionDto usersSelectConditionDto = new UsersSelectConditionDto();
+        usersSelectConditionDto.setUserName(userName);
+        List<Users> userLists = userListDao.selectByCondition(usersSelectConditionDto);
         String userId = userLists.get(userLists.size() - 1).getUserId();
 
         // update用のinputを作成
         InputDto inputDto = new InputDto();
         inputDto.setUserName("putSample2");
         inputDto.setAge(20);
-        inputDto.setDescription("SampleLogic#putSampleのテスト用データ_更新完了");
+        inputDto.setRemarks("SampleLogic#putSampleのテスト用データ_更新完了");
 
         try {
             // ロジック呼び出し
@@ -143,17 +143,17 @@ public class SampleLogicImplTest {
     public void testDeleteSample_success() {
 
         // データを仕込む
-        UserList userList = new UserList();
+        Users userList = new Users();
         String userName = "delSample";
         userList.setUserName(userName);
         userList.setAge(52);
-        userList.setDescription("SampleLogic#deleteSampleのテスト用データ");
+        userList.setRemarks("SampleLogic#deleteSampleのテスト用データ");
         userListDao.insert(userList);
 
         // 挿入したデータを確認し、userIdを取得する
-        SelectConditionDto selectConditionDto = new SelectConditionDto();
-        selectConditionDto.setUserName(userName);
-        List<UserList> userLists = userListDao.selectByCondition(selectConditionDto);
+        UsersSelectConditionDto usersSelectConditionDto = new UsersSelectConditionDto();
+        usersSelectConditionDto.setUserName(userName);
+        List<Users> userLists = userListDao.selectByCondition(usersSelectConditionDto);
         String userId = userLists.get(userLists.size() - 1).getUserId();
 
         try {
@@ -166,7 +166,7 @@ public class SampleLogicImplTest {
         }
 
         // データが削除されていることを確認
-        List<UserList> resultUserLists = userListDao.selectByCondition(selectConditionDto);
+        List<Users> resultUserLists = userListDao.selectByCondition(usersSelectConditionDto);
         assertTrue(resultUserLists.size() == 0);
     }
 }

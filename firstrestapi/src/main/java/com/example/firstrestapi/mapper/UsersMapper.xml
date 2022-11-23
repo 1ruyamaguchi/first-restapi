@@ -3,10 +3,10 @@
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.firstrestapi.mapper.UserListMapper">
+<mapper namespace="com.example.firstrestapi.mapper.UsersMapper">
     <insert id="insert">
         INSERT 
-            INTO user_list (
+            INTO users (
                 user_name, 
                 age, 
                 description
@@ -17,7 +17,7 @@
             )
     </insert>
 
-    <select id="selectByCondition" resultType="com.example.firstrestapi.entity.UserList">
+    <select id="usersSelectByCondition" resultType="com.example.firstrestapi.entity.Users">
         <bind name="userNameLike" value="'%' + userName + '%'"/>
         SELECT 
             user_id, 
@@ -25,7 +25,7 @@
             age, 
             description 
         FROM 
-            user_list
+            users
         <where>
             <if test="userName != ''">
                 user_name LIKE #{userNameLike}
@@ -35,11 +35,11 @@
 
     <update id="update">
         UPDATE 
-            user_list 
+            users
         SET 
             user_name = #{userName},
             age = #{age},
-            description = #{description}
+            remarks = #{remarks}
         WHERE 
             user_id = #{userId}
     </update>
@@ -47,7 +47,7 @@
     <delete id="delete">
         DELETE
         FROM
-            user_list
+            users
         WHERE
             user_id = #{userId}
     </delete>

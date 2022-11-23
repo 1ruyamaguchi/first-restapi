@@ -3,7 +3,7 @@ package com.example.firstrestapi.dto;
 import lombok.Data;
 
 /**
- * DBの更新に使うDto
+ * usersテーブルに使うDto
  * 
  */
 @Data

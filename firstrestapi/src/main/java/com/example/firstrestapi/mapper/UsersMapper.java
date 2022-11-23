@@ -4,37 +4,37 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.example.firstrestapi.dto.SelectConditionDto;
-import com.example.firstrestapi.entity.UserList;
+import com.example.firstrestapi.dto.UsersSelectConditionDto;
+import com.example.firstrestapi.entity.Users;
 
 /**
- * user_listテーブルのmapperインターフェース
+ * usersテーブルのmapperインターフェース
  * 
  */
 @Component
-public interface UserListMapper {
+public interface UsersMapper {
 
     /**
      * ユーザを登録する
      * 
-     * @param userList
+     * @param users
      */
-    void insert(UserList userList);
+    void insert(Users users);
 
     /**
      * 検索条件からカラムを抽出する
      * 
-     * @param selectConditionDto
+     * @param usersSelectConditionDto
      * @return
      */
-    List<UserList> selectByCondition(SelectConditionDto selectConditionDto);
+    List<Users> selectByCondition(UsersSelectConditionDto usersSelectConditionDto);
 
     /**
      * ユーザ情報を更新する
      * 
-     * @param userList
+     * @param users
      */
-    void update(UserList userList);
+    void update(Users users);
 
     /**
      * ユーザを削除する

@@ -106,14 +106,14 @@ public class SampleServiceImplTest {
         output1.setUserId("1");
         output1.setUserName(userName);
         output1.setAge(10);
-        output1.setDescription("テスト１号");
+        output1.setRemarks("テスト１号");
         output1.setNowDate(new Timestamp(System.currentTimeMillis()));
         returnUserLists.add(output1);
         OutputDto output2 = new OutputDto();
         output2.setUserId("1");
         output2.setUserName(userName);
         output2.setAge(20);
-        output2.setDescription("テスト２号");
+        output2.setRemarks("テスト２号");
         output2.setNowDate(new Timestamp(System.currentTimeMillis()));
         returnUserLists.add(output2);
 
