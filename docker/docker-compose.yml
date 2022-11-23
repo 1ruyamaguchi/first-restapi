@@ -1,22 +1,19 @@
 version: "3.3"
-services: 
-
-  java: 
-    build: ../firstRestApi
+services:
+  java:
+    build: ./java
     container_name: java-container
-    ports: 
+    ports:
       - 8080:8080
     tty: true
-        
   db:
-    build: ../db
+    build: ./db
     container_name: db-container
     restart: always
-    ports: 
+    ports:
       - 3306:3306
-    environment: 
+    environment:
       - MYSQL_ROOT_PASSWORD=password
-      
   adminer:
     image: adminer
     container_name: adminer-container
