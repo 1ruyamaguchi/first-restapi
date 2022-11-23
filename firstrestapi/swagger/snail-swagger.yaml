@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  description: "REST APIのサンプル集です。"
+  version: "1.0.0"
+  title: "First REST API"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+paths:
+  /sample/post:
+    post:
+      tags:
+        - "サンプルAPI"
+      summary: "サンプルPOSTメソッド"
+      description: "入力されたユーザ情報を登録します。"
+      requestBody:
+        description: "Review contents"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                userName:
+                  type: "string"
+                age:
+                  type: "integer"
+                  format: "int64"
+                remarks:
+                  type: "string"
+              example:
+                userName: nob
+                age: 13
+                remarks: producer
+
+      responses:
+        200:
+          description: "成功を知らせるメッセージ"
+          content:
+            application/json:
+              schema:
+                type: "string"
+                example: "postMessage Success"
