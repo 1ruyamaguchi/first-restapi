@@ -1,7 +1,7 @@
 -- データベース作成
-CREATE DATABASE restapi_test;
+CREATE DATABASE snaildb;
 
-USE restapi_test;
+USE snaidb;
 
 -- テーブル作成
 CREATE TABLE user_list(
