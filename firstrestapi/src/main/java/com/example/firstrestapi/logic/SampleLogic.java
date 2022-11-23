@@ -29,7 +29,7 @@ public interface SampleLogic {
      * @param userId
      * @return
      */
-    List<OutputDto> getSample(String userName);
+    List<OutputDto> getSample(String userId);
 
     /**
      * 入力情報をもとにDBを更新 返却値は更新成否

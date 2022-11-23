@@ -66,7 +66,7 @@ public class UsersDaoImplTest {
     }
 
     /**
-     * usersSelectByConditionのテスト userNameが空の場合に動くこと
+     * usersSelectByConditionのテスト userId, userNameが空の場合に動くこと
      * 
      */
     @Test
@@ -74,6 +74,7 @@ public class UsersDaoImplTest {
 
         // 検索条件の設定
         UsersSelectConditionDto usersSelectConditionDto = new UsersSelectConditionDto();
+        usersSelectConditionDto.setUserId("");
         usersSelectConditionDto.setUserName("");
 
         List<Users> usersList = new ArrayList<Users>();
@@ -91,7 +92,7 @@ public class UsersDaoImplTest {
     }
 
     /**
-     * usersSelectByConditionのテスト userNameが空でない場合に動くこと
+     * usersSelectByConditionのテスト userId, userNameが空でない場合に動くこと
      * 
      */
     @Test
@@ -99,6 +100,7 @@ public class UsersDaoImplTest {
 
         // 検索条件の設定
         UsersSelectConditionDto usersSelectConditionDto = new UsersSelectConditionDto();
+        usersSelectConditionDto.setUserId("2");
         usersSelectConditionDto.setUserName("nob");
 
         // 検索結果
@@ -113,7 +115,7 @@ public class UsersDaoImplTest {
             fail();
         }
 
-        assertEquals(1, usersList.size());
+        assertEquals(0, usersList.size());
     }
 
     /**

@@ -29,7 +29,6 @@ public interface UsersDao {
      */
     List<Users> selectByCondition(UsersSelectConditionDto usersSelectConditionDto);
 
-    // TODO selectByConditionの検索条件にuserId追加
     // TODO selectAll追加
 
     /**

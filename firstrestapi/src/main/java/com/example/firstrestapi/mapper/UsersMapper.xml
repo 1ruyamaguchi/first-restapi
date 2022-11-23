@@ -27,8 +27,11 @@
         FROM 
             users
         <where>
+            <if test="userId != ''">
+                user_id = #{userId}
+            </if>
             <if test="userName != ''">
-                user_name LIKE #{userNameLike}
+                AND user_name LIKE #{userNameLike}
             </if>
         </where>
     </select>

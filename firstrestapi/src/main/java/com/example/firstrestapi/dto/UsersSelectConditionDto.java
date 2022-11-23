@@ -9,6 +9,9 @@ import lombok.Data;
 @Data
 public class UsersSelectConditionDto {
 
+    /** ユーザID */
+    private String userId;
+
     /** ユーザ名 */
     private String userName;
 }
