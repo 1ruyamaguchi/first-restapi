@@ -29,6 +29,8 @@ public interface UsersDao {
      */
     List<Users> selectByCondition(UsersSelectConditionDto usersSelectConditionDto);
 
+    // TODO selectAll追加
+
     /**
      * ユーザ情報を更新します。
      * 
