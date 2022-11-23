@@ -25,7 +25,7 @@ import com.example.firstrestapi.enums.Component;
 public class UsersDaoImplTest {
 
     @Autowired
-    private UsersDaoImpl usersDao;
+    private UsersDao usersDao;
 
     /**
      * テスト設定
