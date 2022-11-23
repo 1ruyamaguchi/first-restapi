@@ -1,11 +1,11 @@
 version: "3"
 services:
-  java:
-    build: ./java
-    container_name: java-container
-    ports:
-      - 8080:8080
-    tty: true
+  # java:
+  #   build: ./java
+  #   container_name: java-container
+  #   ports:
+  #     - 8080:8080
+  #   tty: true
   db:
     build: ./db
     container_name: db-container
