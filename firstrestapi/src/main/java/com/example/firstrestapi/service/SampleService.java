@@ -16,7 +16,7 @@ import com.example.firstrestapi.dto.OutputDto;
 import com.example.firstrestapi.dto.UpdateDto;
 
 /**
- * サンプルのサービスインターフェース CURDをそれぞれ定義する
+ * サンプルのサービスインターフェース CRUDをそれぞれ定義する
  * 
  */
 @Service
