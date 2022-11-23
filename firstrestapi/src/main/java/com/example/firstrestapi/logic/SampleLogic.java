@@ -24,12 +24,12 @@ public interface SampleLogic {
     boolean postSample(InputDto inputDto);
 
     /**
-     * IDを指定して登録情報を取得する
+     * 名前を指定して登録情報を取得する
      * 
-     * @param userId
+     * @param userName
      * @return
      */
-    List<OutputDto> getSample(String userId);
+    List<OutputDto> getSample(String userName);
 
     /**
      * 入力情報をもとにDBを更新 返却値は更新成否

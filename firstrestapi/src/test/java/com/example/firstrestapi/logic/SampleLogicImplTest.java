@@ -1,6 +1,6 @@
 package com.example.firstrestapi.logic;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -100,7 +100,7 @@ public class SampleLogicImplTest {
         }
 
         // 結果のassert
-        assertNotNull(usersList);
+        assertEquals(2, usersList.size());
     }
 
     /**

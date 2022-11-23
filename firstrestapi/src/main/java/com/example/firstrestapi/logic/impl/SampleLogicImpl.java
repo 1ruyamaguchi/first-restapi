@@ -66,11 +66,12 @@ public class SampleLogicImpl implements SampleLogic {
         List<OutputDto> returnUserLists = new ArrayList<>();
 
         // 検索条件を設定
-        UsersSelectConditionDto selectConditionDto = new UsersSelectConditionDto();
-        selectConditionDto.setUserName(userName);
+        UsersSelectConditionDto usersSelectConditionDto = new UsersSelectConditionDto();
+        usersSelectConditionDto.setUserId("");
+        usersSelectConditionDto.setUserName(userName);
 
         // データ取得処理
-        List<Users> userLists = userListDao.selectByCondition(selectConditionDto);
+        List<Users> userLists = userListDao.selectByCondition(usersSelectConditionDto);
 
         // データを返却値に詰め替え、取得時間を詰め込む
         for (Users userList : userLists) {
