@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.firstrestapi.constants.UrlConst;
 import com.example.firstrestapi.dto.InputDto;
 import com.example.firstrestapi.dto.OutputDto;
 import com.example.firstrestapi.dto.UpdateDto;
@@ -21,7 +22,7 @@ import com.example.firstrestapi.dto.UpdateDto;
  */
 @Service
 @RestController
-@RequestMapping("/sample")
+@RequestMapping(UrlConst.SAMPLE)
 public interface SampleService {
 
     /**
@@ -29,7 +30,7 @@ public interface SampleService {
      * 
      * @param inputDto
      */
-    @PostMapping(value = "/post")
+    @PostMapping(value = UrlConst.POST)
     String postSample(@RequestBody InputDto inputDto);
 
     /**
@@ -38,7 +39,7 @@ public interface SampleService {
      * @param userName
      * @return
      */
-    @GetMapping(value = "/get")
+    @GetMapping(value = UrlConst.GET)
     List<OutputDto> getSample(String userName);
 
     /**
@@ -46,7 +47,7 @@ public interface SampleService {
      * 
      * @param inputDto
      */
-    @PutMapping(value = "/put")
+    @PutMapping(value = UrlConst.PUT)
     String putSample(@RequestBody UpdateDto updateDto);
 
     /**
@@ -55,6 +56,6 @@ public interface SampleService {
      * @param userId
      * @return
      */
-    @DeleteMapping(value = "/delete")
+    @DeleteMapping(value = UrlConst.DELETE)
     String deleteSample(String userId);
 }
